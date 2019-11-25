@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>super generator</title>
+
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    
+
+    <div id="genBtn">Сгенерировать</div>
+
+    <script type="text/javascript">
+      let elem = document.getElementById('genBtn').addEventListener("click", multiRandom());
+	  
+      function randomInteger(min, max) {
+	  // получить случайное число от (min-0.5) до (max+0.5)
+	  let rand = min - 0.5 + Math.random() * (max - min + 1);
+	  return Math.round(rand);
+	  
+      }
+      function multiRandom() {
+	    let out1 = randomInteger(0,10);
+	    let out2 = randomInteger(0,10);
+	    console.log(out1);
+	    document.write("<h6>" + out1 + "</h6>" + "<h6>" + out2 + "</h6>");
+	  }	  
+
+    
+
+    </script>
+  </body>
+</html>
