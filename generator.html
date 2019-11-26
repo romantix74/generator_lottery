@@ -50,12 +50,14 @@
 		// массив , для не повторяющихся элементов
 		let out_set = new Set(out_sorted);
 		//out_set.foreach( s => document.write(s));  
-		document.write([out_set]);
+		let out_array = Array.from(out_set)
+		document.write(out_array);
+		
 		console.log(out_set);
 		//while( out.length > 0 ) {
 		//  out_set.push(out.pop());
 		//}
-		return out_set;
+		return out_array;
 	  }
       
 	  // массив для вывода на страницу и анализа
