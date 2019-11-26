@@ -5,14 +5,18 @@
     <title>super generator</title>
 
   </head>
-  <body onload=multipleRandomString()>
+  <body onload=multipleRandomStringAndAnalyze()>
     <div id="root"></div>
     
     
 
-    //<div id="genBtn" onclick=multipleRandomString()>Сгенерировать</div>
+    //<div id="genBtn" onclick=multipleRandomStringAndAnalyze()>Сгенерировать</div>
 
     <script type="text/javascript">
+	  var min_int=1;
+	  var max_int=100;
+	  
+	  	  
       //let elem = document.getElementById('genBtn').addEventListener("click", multiRandom());
 	  
       function randomInteger(min, max) {
@@ -26,7 +30,7 @@
       function multiRandom() {
 	    let out = []//[randomInteger(0,100), randomInteger(0,100), randomInteger(0,100), randomInteger(0,100),]
 	    for (var i = 0; i < 6; i++) {
-		   out.push(randomInteger(0,100));
+		   out.push(randomInteger(min_int, max_int));
 		}
 
 		
@@ -41,16 +45,39 @@
 		  out_set.push(out.pop());
 		}
 		document.write("</br>");
-		document.write(out_set.sort(function (a, b) {
+		let out_sorted = out_set.sort(function (a, b) {
 			return a - b;
-		}));
+		})
+		document.write(out_sorted);
+		return out_sorted;
 	  }
       
-      function multipleRandomString() {
-	    for (var i = 0; i < 20; i++) {
-		  console.log(i)
-		  multiRandom();
+	  // массив для вывода на страницу и анализа
+	  var out_arr = []
+      function multipleRandomStringAndAnalyze() {
+	    for (let i = 0; i < 50; i++) {
+		  
+		  //out_arr.push(multiRandom());	
+          out_arr = out_arr.concat(multiRandom());		  
+		  //multiRandom();		  
 		}
+		
+		// подсчет распределенния
+		var result = {};
+		for (var i = 0; i < out_arr.length; ++i)
+		{
+			var a = out_arr[i];
+			if (result[a] != undefined)
+				++result[a];
+			else
+				result[a] = 1;
+		}
+		
+		document.write("</br>");
+		for (var key in result)
+		     
+			document.write('число ' + key + ' == ' + result[key] + ' раз(а) <br>');
+				
 	  }	  
 
     
