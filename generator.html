@@ -3,93 +3,97 @@
   <head>
     <meta charset="UTF-8" />
     <title>super generator</title>
+    <script type="text/javascript">
+	  
+		  var min_int=1;
+		  var max_int=100;
+		  
+			  
+		  //let elem = document.getElementById('genBtn').addEventListener("click", multiRandom());
+		  
+		  function randomInteger(min, max) {
+		  // получить случайное число от (min-0.5) до (max+0.5)
+		  let rand = min - 0.5 + Math.random() * (max - min + 1);
+		  return Math.round(rand);
+		  
+		  }
+		  
+		  // рандомная строка из 6 значений	  
+		  function multiRandom() {
+			let out = []
+			for (let i = 0; i < 6+3; i++) {
+			   out.push(randomInteger(min_int, max_int));
+			}
 
+			
+			console.log(out);
+			//document.write("<h6>" + out1 + "</h6>" + "<h6>" + out2 + "</h6>");
+			//document.write(out1 + " " +  out2 + " " +  out3 );
+			//document.write(out);  //.sort(function (a, b) {return a - b;  }););
+			
+			
+			document.write("</br>");
+			let out_sorted = out.sort(function (a, b) {
+				return a - b;
+			})
+			
+			//return out_sorted;
+			
+			// массив , для не повторяющихся элементов
+			let out_set = new Set(out_sorted);
+			//out_set.foreach( s => document.write(s));  
+			
+			let out_array = Array.from(out_set)	
+			
+			//print only 5 or 6 of elements of array
+			document.write(out_array.slice(0,5));
+			
+			console.log(out_set);
+			//while( out.length > 0 ) {
+			//  out_set.push(out.pop());
+			//}
+			return out_array;
+		  }
+		  
+		  // массив для вывода на страницу и анализа
+		  var out_arr = []
+		  function multipleRandomStringAndAnalyze() {
+			for (let i = 0; i < 100; i++) {
+			  
+			  //out_arr.push(multiRandom());	
+			  out_arr = out_arr.concat(multiRandom());		  
+			  //multiRandom();		  
+			}
+			
+			// подсчет распределенния
+			var result = {};
+			for (var i = 0; i < out_arr.length; ++i)
+			{
+				var a = out_arr[i];
+				if (result[a] != undefined)
+					++result[a];
+				else
+					result[a] = 1;
+			}
+			
+			document.write("</br>");
+			for (var key in result)
+				 
+				document.write('число ' + key + ' == ' + result[key] + ' раз(а) <br>');
+					
+		  }	  
+   
+    
+        window.onload = multipleRandomStringAndAnalyze;
+    </script>
   </head>
-  <body onload=multipleRandomStringAndAnalyze()>
+  <body> onload=multipleRandomStringAndAnalyze()>
     <div id="root"></div>
     
+   
     
-
-    //<div id="genBtn" onclick=multipleRandomStringAndAnalyze()>Сгенерировать</div>
-
-    <script type="text/javascript">
-	  var min_int=1;
-	  var max_int=100;
-	  
-	  	  
-      //let elem = document.getElementById('genBtn').addEventListener("click", multiRandom());
-	  
-      function randomInteger(min, max) {
-	  // получить случайное число от (min-0.5) до (max+0.5)
-	  let rand = min - 0.5 + Math.random() * (max - min + 1);
-	  return Math.round(rand);
-	  
-      }
-	  
-	  // рандомная строка из 6 значений	  
-      function multiRandom() {
-	    let out = []   //[randomInteger(0,100), randomInteger(0,100), randomInteger(0,100), randomInteger(0,100),]
-	    for (let i = 0; i < 6; i++) {
-		   out.push(randomInteger(min_int, max_int));
-		}
-
-		
-	    console.log(out);
-	    //document.write("<h6>" + out1 + "</h6>" + "<h6>" + out2 + "</h6>");
-		//document.write(out1 + " " +  out2 + " " +  out3 );
-		//document.write(out);  //.sort(function (a, b) {return a - b;  }););
-		
-		
-		document.write("</br>");
-		let out_sorted = out.sort(function (a, b) {
-			return a - b;
-		})
-		
-		//return out_sorted;
-		
-		// массив , для не повторяющихся элементов
-		let out_set = new Set(out_sorted);
-		//out_set.foreach( s => document.write(s));  
-		let out_array = Array.from(out_set)
-		document.write(out_array);
-		
-		console.log(out_set);
-		//while( out.length > 0 ) {
-		//  out_set.push(out.pop());
-		//}
-		return out_array;
-	  }
-      
-	  // массив для вывода на страницу и анализа
-	  var out_arr = []
-      function multipleRandomStringAndAnalyze() {
-	    for (let i = 0; i < 100; i++) {
-		  
-		  //out_arr.push(multiRandom());	
-          out_arr = out_arr.concat(multiRandom());		  
-		  //multiRandom();		  
-		}
-		
-		// подсчет распределенния
-		var result = {};
-		for (var i = 0; i < out_arr.length; ++i)
-		{
-			var a = out_arr[i];
-			if (result[a] != undefined)
-				++result[a];
-			else
-				result[a] = 1;
-		}
-		
-		document.write("</br>");
-		for (var key in result)
-		     
-			document.write('число ' + key + ' == ' + result[key] + ' раз(а) <br>');
-				
-	  }	  
+	<p><input type="number" id="how_much" value="6" min="1" max="49" step="1"> из <input type="number" id="from_many" value="49" min="49" max="49" step="1"></p>
 
     
-
-    </script>
   </body>
 </html>
