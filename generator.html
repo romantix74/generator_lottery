@@ -1,14 +1,29 @@
 ﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>super generator</title>
-    <script type="text/javascript">
+
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    
+    
+	<p><input type="number" id="how_much_id" value="6" min="1" max="49" step="1"/> из <input type="number" id="from_many_id" value="49" min="49" max="49" step="1"/></p>
+	<button onclick=multipleRandomStringAndAnalyze()>Сгенерировать</bitton>
+
+    <div id=generated_items>
+	</div>
+    
+        <script type="text/javascript">
 	  
 		  var min_int=1;
-		  var max_int=100;
+		  var max_int = document.getElementById('from_many_id').value;;
+		  var how_much = document.getElementById('how_much_id').value;
 		  
-			  
+		  
 		  //let elem = document.getElementById('genBtn').addEventListener("click", multiRandom());
 		  
 		  function randomInteger(min, max) {
@@ -32,7 +47,7 @@
 			//document.write(out);  //.sort(function (a, b) {return a - b;  }););
 			
 			
-			document.write("</br>");
+			//document.write("</br>");
 			let out_sorted = out.sort(function (a, b) {
 				return a - b;
 			})
@@ -44,11 +59,18 @@
 			//out_set.foreach( s => document.write(s));  
 			
 			let out_array = Array.from(out_set)	
+			// выводим только столько нам надо
+			out_array = out_array.slice(0,how_much);
 			
 			//print only 5 or 6 of elements of array
-			document.write(out_array.slice(0,5));
+			//document.write(out_array.slice(0,5));
+			let div = document.createElement('div');
+			div.className = "alert";
+			div.innerHTML = out_array;
+
+			document.body.append(div);
 			
-			console.log(out_set);
+			console.log(out_array);
 			//while( out.length > 0 ) {
 			//  out_set.push(out.pop());
 			//}
@@ -58,7 +80,7 @@
 		  // массив для вывода на страницу и анализа
 		  var out_arr = []
 		  function multipleRandomStringAndAnalyze() {
-			for (let i = 0; i < 100; i++) {
+			for (let i = 0; i < 5; i++) {
 			  
 			  //out_arr.push(multiRandom());	
 			  out_arr = out_arr.concat(multiRandom());		  
@@ -76,24 +98,17 @@
 					result[a] = 1;
 			}
 			
-			document.write("</br>");
-			for (var key in result)
+			//document.write("</br>");
+			for (var key in result) {
 				 
-				document.write('число ' + key + ' == ' + result[key] + ' раз(а) <br>');
-					
+				//document.write('число ' + key + ' == ' + result[key] + ' раз(а) <br>');
+				let div = document.createElement('div');
+				div.className = "alert";
+				div.innerHTML = 'число ' + key + ' == ' + result[key] + ' раз(а) <br>';
+				document.body.append(div);
+			}		
 		  }	  
    
-    
-        window.onload = multipleRandomStringAndAnalyze;
-    </script>
-  </head>
-  <body> onload=multipleRandomStringAndAnalyze()>
-    <div id="root"></div>
-    
-   
-    
-	<p><input type="number" id="how_much" value="6" min="1" max="49" step="1"> из <input type="number" id="from_many" value="49" min="49" max="49" step="1"></p>
-
-    
+    </script>	
   </body>
 </html>
