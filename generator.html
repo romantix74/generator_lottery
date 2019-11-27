@@ -20,9 +20,9 @@
         <script type="text/javascript">
 	  
 		  var min_int=1;
-		  var max_int = document.getElementById('from_many_id').value;;
+		  var max_int = document.getElementById('from_many_id').value;
 		  var how_much = document.getElementById('how_much_id').value;
-		  
+		  console.log(max_int);
 		  
 		  //let elem = document.getElementById('genBtn').addEventListener("click", multiRandom());
 		  
@@ -80,6 +80,11 @@
 		  // массив для вывода на страницу и анализа
 		  var out_arr = []
 		  function multipleRandomStringAndAnalyze() {
+		    // заново считываем
+			max_int = document.getElementById('from_many_id').value;
+		    how_much = document.getElementById('how_much_id').value;
+			console.log(max_int);
+			
 			for (let i = 0; i < 5; i++) {
 			  
 			  //out_arr.push(multiRandom());	
